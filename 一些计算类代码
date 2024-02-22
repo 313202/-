@@ -1,0 +1,41 @@
+import math
+
+R = 6371.393
+Pi = math.pi
+
+# A地
+jingduA, weiduA= ?,?
+xA = math.cos(math.radians(weiduA))*math.cos(math.radians(jingduA))
+yA = math.cos(math.radians(weiduA))*math.sin(math.radians(jingduA))
+zA = math.sin(math.radians(weiduA))
+
+# B地
+jingduB, weiduB = ?, ?
+xB = math.cos(weiduB*Pi/180) * math.cos(jingduB*Pi/180)
+yB = math.cos(weiduB*Pi/180) * math.sin(jingduB*Pi/180)
+zB = math.sin(weiduB*Pi/180)
+
+
+# 开始计算
+cosalpha = (xA*xB+yA*yB+zA*zB)/((xA*xA+yA*yA+zA*zA)*(xB*xB+yB*yB+zB*zB))**0.5
+
+alpha = math.acos(cosalpha)
+L = alpha * R
+
+# 单位是千米
+print(L)
+方法2
+import math
+
+R = 6371.393
+Pi = math.pi
+
+jingduA, weiduA= ?,?
+jingduB, weiduB = ?, ?
+
+a = (math.sin(math.radians(weiduA/2-weiduB/2)))**2
+b = math.cos(weiduA*Pi/180) * math.cos(weiduB*Pi/180) * (math.sin((jingduA/2-jingduB/2)*Pi/180))**2
+L = 2 * R * math.asin((a+b)**0.5)
+
+# 因为地球平均半径用的是千米，所以最后结果的单位也是千米
+print(L)
